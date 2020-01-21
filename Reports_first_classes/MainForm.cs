@@ -18,6 +18,7 @@ namespace Reports_first_classes
         BackgroundWorker backround_worker;
         string[] file_paths;
         string file_path_template;
+        bool success_read_files = false;
 
         public MainForm()
         {
@@ -51,6 +52,7 @@ namespace Reports_first_classes
             openFileDialog.FilterIndex = 0;
             openFileDialog.Multiselect = true;
             openFileDialog.RestoreDirectory = true;
+            FilePath_TextBox.Text = String.Empty;
             file_paths = new string[3]; // Небольшой костыль, потому что пока всего 3 предмета нужно считать
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -71,11 +73,21 @@ namespace Reports_first_classes
                 }
                 else if (openFileDialog.FileNames.Length == 1 && Regex.IsMatch(Path.GetFileName(openFileDialog.FileName), @"^XXXX"))
                 {
-                    file_path_template = openFileDialog.FileName;
-                    Button_ReadExcelFile.Enabled = false;
-                    Button_ReadExcelFile.Visible = false;
-                    Button_WriteExcelFile.Enabled = true;
-                    Button_WriteExcelFile.Visible = true;
+                    if (success_read_files)
+                    {
+                        file_path_template = openFileDialog.FileName;
+                        CopyTamplate(file_path_template);
+                        Button_ReadExcelFile.Enabled = false;
+                        Button_ReadExcelFile.Visible = false;
+                        Button_WriteExcelFile.Enabled = true;
+                        Button_WriteExcelFile.Visible = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Невозможно выбрать шаблон сейчас. Сначала необходимо считать файлы с данными.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        FilePath_TextBox.Text = String.Empty;
+                        file_path_template = String.Empty;
+                    }
                 }
                 else
                 {
@@ -110,7 +122,7 @@ namespace Reports_first_classes
                 if (file_paths.Length == 3)
                     ev.Result = "Считывание завершено успешно";
                 else
-                    ev.Result = "Принудительное завершение чтения";
+                    ev.Result = "Принудительное завершение считывания";
             };
 
             backround_worker.ProgressChanged += (obj, ev) =>
@@ -133,6 +145,7 @@ namespace Reports_first_classes
                     progress_bar_read.Value = 0;
                     progress_bar_read.Visible = false;
                     progress_label.Visible = false;
+                    success_read_files = true;
                 }
             };
 
@@ -180,6 +193,25 @@ namespace Reports_first_classes
                 };
 
                 backround_worker.RunWorkerAsync();
+            }
+        }
+
+        private void CopyTamplate(string sourceFile)
+        {
+            string sourceDir =  sourceFile.Substring(0,sourceFile.LastIndexOf('\\'));
+            string destenationFile = $"{sourceDir}\\Готовый отчет.xlsx";
+
+            if (File.Exists(destenationFile))
+                File.Delete(destenationFile);
+
+            try
+            {
+                File.Copy(sourceFile, destenationFile, false);
+                file_path_template = destenationFile; // Подменяем путь для заполнения отчета со считанного файла на его копию
+            }
+            catch (IOException copyError)
+            {
+                MessageBox.Show($"Ошибка создания отчето по шаблону: {copyError.Message}. Обратитесь к разработчику!");
             }
         }
     }
