@@ -13,3 +13,18 @@ C:\Users\Волков_А\source\repos\Reports_first_classes\Reports_first_classe
 C:\Users\Волков_А\source\repos\Reports_first_classes\Reports_first_classes\bin\Debug\System.IO.Packaging.dll
 C:\Users\Волков_А\source\repos\Reports_first_classes\Reports_first_classes\bin\Debug\DocumentFormat.OpenXml.xml
 C:\Users\Волков_А\source\repos\Reports_first_classes\Reports_first_classes\obj\Debug\Reports_first_classes.csproj.CopyComplete
+C:\Users\Волков_А\Desktop\Programs\ПРОГРАММА ДЛЯ АНИ\Reports_first_classes\Reports_first_classes\bin\Debug\Reports_first_classes.exe.config
+C:\Users\Волков_А\Desktop\Programs\ПРОГРАММА ДЛЯ АНИ\Reports_first_classes\Reports_first_classes\bin\Debug\Reports_first_classes.exe
+C:\Users\Волков_А\Desktop\Programs\ПРОГРАММА ДЛЯ АНИ\Reports_first_classes\Reports_first_classes\bin\Debug\Reports_first_classes.pdb
+C:\Users\Волков_А\Desktop\Programs\ПРОГРАММА ДЛЯ АНИ\Reports_first_classes\Reports_first_classes\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\Волков_А\Desktop\Programs\ПРОГРАММА ДЛЯ АНИ\Reports_first_classes\Reports_first_classes\bin\Debug\System.IO.FileSystem.Primitives.dll
+C:\Users\Волков_А\Desktop\Programs\ПРОГРАММА ДЛЯ АНИ\Reports_first_classes\Reports_first_classes\bin\Debug\System.IO.Packaging.dll
+C:\Users\Волков_А\Desktop\Programs\ПРОГРАММА ДЛЯ АНИ\Reports_first_classes\Reports_first_classes\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\Волков_А\Desktop\Programs\ПРОГРАММА ДЛЯ АНИ\Reports_first_classes\Reports_first_classes\obj\Debug\Reports_first_classes.csprojAssemblyReference.cache
+C:\Users\Волков_А\Desktop\Programs\ПРОГРАММА ДЛЯ АНИ\Reports_first_classes\Reports_first_classes\obj\Debug\Reports_first_classes.MainForm.resources
+C:\Users\Волков_А\Desktop\Programs\ПРОГРАММА ДЛЯ АНИ\Reports_first_classes\Reports_first_classes\obj\Debug\Reports_first_classes.Properties.Resources.resources
+C:\Users\Волков_А\Desktop\Programs\ПРОГРАММА ДЛЯ АНИ\Reports_first_classes\Reports_first_classes\obj\Debug\Reports_first_classes.csproj.GenerateResource.cache
+C:\Users\Волков_А\Desktop\Programs\ПРОГРАММА ДЛЯ АНИ\Reports_first_classes\Reports_first_classes\obj\Debug\Reports_first_classes.csproj.CoreCompileInputs.cache
+C:\Users\Волков_А\Desktop\Programs\ПРОГРАММА ДЛЯ АНИ\Reports_first_classes\Reports_first_classes\obj\Debug\Reports_first_classes.csproj.CopyComplete
+C:\Users\Волков_А\Desktop\Programs\ПРОГРАММА ДЛЯ АНИ\Reports_first_classes\Reports_first_classes\obj\Debug\Reports_first_classes.exe
+C:\Users\Волков_А\Desktop\Programs\ПРОГРАММА ДЛЯ АНИ\Reports_first_classes\Reports_first_classes\obj\Debug\Reports_first_classes.pdb

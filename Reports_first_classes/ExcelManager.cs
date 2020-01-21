@@ -116,6 +116,7 @@ namespace Reports_first_classes
                         if (Regex.IsMatch(sheet.Name.ToString(), @"свод_ЧТ$"))
                             WriteToSheet((excel_doc.WorkbookPart.GetPartById(sheet.Id) as WorksheetPart).Worksheet, sharedString, records_reading, "calculate_and_fill", sheet.Name.ToString());
                     }
+                    excel_doc.Close();
                 }
             }
             catch
@@ -133,9 +134,9 @@ namespace Reports_first_classes
                     {
                         List<DataForFill> data_for_fill = new List<DataForFill>(); // Создаем список структур, в которых будут содержаться только интересующие нас данные
 
-                        Row task_result_row = worksheet.Descendants<Row>().Where(r => r.RowIndex == 11).FirstOrDefault();
+                        Row task_result_row = worksheet.Descendants<Row>().Where(r => r.RowIndex == 11).FirstOrDefault(); // т.к. начинаем писать в файл с 11 строки
 
-                        foreach (Cell cell in task_result_row) // Собираем буквенные ссылки на ячейки с заданиями  // Собираем буквенные ссылки на ячейки с заданиями
+                        foreach (Cell cell in task_result_row) // Собираем буквенные ссылки на ячейки с заданиями 
                         {
                             if (cell.CellValue != null && !String.IsNullOrWhiteSpace(cell.CellValue.InnerText) && cell.DataType?.Value != CellValues.Error)
                             {
@@ -188,7 +189,7 @@ namespace Reports_first_classes
                             Cell cellFIO = InsertCellInWorksheet("D", (uint)data_for_fill.IndexOf(data) + 25, worksheet);
                             Cell cellVariant = InsertCellInWorksheet("E", (uint)data_for_fill.IndexOf(data) + 25, worksheet);
 
-                            // Set the value of cell A1.
+                            // Задаем значения ячеек.
                             cellFIO.CellValue = new CellValue(index_FIO.ToString());
                             cellVariant.CellValue = new CellValue(index_variant.ToString());
 
@@ -204,6 +205,9 @@ namespace Reports_first_classes
                                 {
                                     if (temp_task.Item1 == double.Parse(task_ref.Item1, NumberStyles.Any, CultureInfo.InvariantCulture.NumberFormat))
                                     {
+                                        int c_row_index = (int)data_for_fill.IndexOf(data) + 25;
+                                        //if (c_row_index > 165)
+                                        //    MessageBox.Show("Watch");
                                         Cell cell_task_result = InsertCellInWorksheet(task_ref.Item2, (uint)data_for_fill.IndexOf(data) + 25, worksheet);
                                         cell_task_result.CellValue = new CellValue(temp_task.Item2.ToString());
                                         cell_task_result.DataType = new DocumentFormat.OpenXml.EnumValue<CellValues>(CellValues.Number);
@@ -214,7 +218,7 @@ namespace Reports_first_classes
 
                             // Save the new worksheet.
                             worksheet.Save();
-
+                            double count_record = data_for_fill.IndexOf(data);
                             double progress = (((double)data_for_fill.IndexOf(data) + 1) / (double)(data_for_fill.Count - 1)) * 100;
                             OnProgress_up((int)progress, sheet_name);
                             progress = 0;
@@ -222,7 +226,7 @@ namespace Reports_first_classes
 
                         break;
                     }
-                case "calculate_and_fill":
+                case "calculate_and_fill": 
                     {
                         var region_records = records.GroupBy(r => r.region).ToList();
 
@@ -400,6 +404,8 @@ namespace Reports_first_classes
                 row.InsertBefore(newCell, refCell);
 
                 worksheet.Save();
+                //if (rowIndex > 165)
+                //    MessageBox.Show("Смотри");
                 return newCell;
             }
         }
@@ -425,7 +431,7 @@ namespace Reports_first_classes
                 }
             else
                 MessageBox.Show("Выберете 3 файла для трех предметов, путем выделения трех файлов формата .xlsx", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+       }
 
         private void ReadExcelFile(string file_path, ref List<Record> records)
         {
